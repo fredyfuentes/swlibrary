@@ -20,8 +20,7 @@ export class ListComponent implements OnInit {
   eyeColor: string = '';
   gender: string = '';
   film: string = '';
-  isLoading: boolean = true;
-  isLoadingFilms: boolean = true;
+  isLoading: boolean = true;  
   
   constructor(private activateRoute: ActivatedRoute,
               private characterService: CharactersService,
@@ -36,8 +35,7 @@ export class ListComponent implements OnInit {
 
     chf.forEach(strChar => {
       this.characterService.getCharacterByUrl(strChar).subscribe(character => {
-        this.isLoading = false;
-        this.isLoadingFilms = false;
+        this.isLoading = false;        
         this.filmService.getFilmByUrls(character.films).subscribe(resp => character.films = resp);
         this.characters.push(character);
       });

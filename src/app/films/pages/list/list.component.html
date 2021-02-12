@@ -5,7 +5,8 @@
         <div class="column" *ngFor="let film of films">
             <div class="card">
                 <div class="container">
-                    <h4><strong>{{film.title}}</strong> - <small>{{film.episode_id}}</small></h4>
+                    <h4><strong>{{film.title}}</strong></h4>
+                    <p>Episode Number: <strong>{{film.episode_id}}</strong></p>
                     <p>Director: <strong>{{film.director}}</strong></p>
                     <button [routerLink]="['/characters/list', film]">View characters</button>
                 </div>

@@ -1,4 +1,4 @@
-<h1>{{title}} <small>{{episode}}</small> Characters</h1>
+<h1><small>Episode {{episode}}</small>: {{title}} Characters</h1>
 <div class="lds-loading" *ngIf="isLoading; else dataCharacters"><div></div><div></div><div></div></div>
 
 <ng-template #dataCharacters>
@@ -22,11 +22,8 @@
                     <h4>{{character.name | uppercase}}</h4>
                     <p><strong>Eye Color:</strong> {{character.eye_color}}</p>
                     <p><strong>Gender:</strong> {{character.gender}}</p>
-                    <h4>Films Starring</h4>
-                    <div class="lds-loading" *ngIf="isLoadingFilms; else dataFilmsCharacter"><div></div><div></div><div></div></div>
-                    <ng-template #dataFilmsCharacter>
-                        <app-films-starring [films]="character.films"></app-films-starring>
-                    </ng-template>                    
+                    <h4>Films Starring</h4>                                        
+                    <app-films-starring [films]="character.films"></app-films-starring>
                 </div>
             </div>
         </div>

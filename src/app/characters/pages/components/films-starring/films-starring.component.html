@@ -1,4 +1,7 @@
 <!-- <li *ngIf="film">{{film?.title}}</li> -->
-<ul *ngIf="films">
-    <li *ngFor="let film of films">{{film}}</li>
-</ul>
+<div class="lds-loading" *ngIf="films.join(',').indexOf('http') !== -1; else dataCharactersFilms"><div></div><div></div><div></div></div>
+<ng-template #dataCharactersFilms>
+    <ul>
+        <li *ngFor="let film of films">{{film}}</li>
+    </ul>
+</ng-template>

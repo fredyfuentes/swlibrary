@@ -10,10 +10,15 @@
   h1, label, a {
     color: white;
   }
+
+  h1, h3, h4 {
+    text-align: center;
+  }
   
   .container-form{
     display: inline-block;
     width: 33%;
+    padding: 5px;
   }
     
   /* Float four columns side by side */
