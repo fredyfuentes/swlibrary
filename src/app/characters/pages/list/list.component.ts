@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/character.interface';
 import { FilmsService } from '../../../films/services/films.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -21,6 +22,9 @@ export class ListComponent implements OnInit {
   gender: string = '';
   film: string = '';
   isLoading: boolean = true;  
+
+  subscripcionCharacters!: Subscription;
+  subscripcionFilms!: Subscription;
   
   constructor(private activateRoute: ActivatedRoute,
               private characterService: CharactersService,
@@ -34,12 +38,17 @@ export class ListComponent implements OnInit {
     let chf: string[] = this.charactersFilm.split(',');
 
     chf.forEach(strChar => {
-      this.characterService.getCharacterByUrl(strChar).subscribe(character => {
+      this.subscripcionCharacters = this.characterService.getCharacterByUrl(strChar).subscribe(character => {
         this.isLoading = false;        
-        this.filmService.getFilmByUrls(character.films).subscribe(resp => character.films = resp);
+        this.subscripcionFilms = this.filmService.getFilmByUrls(character.films).subscribe(resp => character.films = resp);
         this.characters.push(character);
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscripcionFilms.unsubscribe();
+    this.subscripcionCharacters.unsubscribe();
   }
 
 }
