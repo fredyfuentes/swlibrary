@@ -1,0 +1,11 @@
+<p>List of StarWars Movies</p>
+
+<div class="cards">
+    <div class="card" *ngFor="let film of films">
+        <div class="container">
+            <h4><strong>{{film.title}}</strong> - <small>{{film.episode_id}}</small></h4>
+            <p>Director: <strong>{{film.director}}</strong></p>
+            <button [routerLink]="['/characters/list', film]">View characters...</button>
+        </div>
+    </div>
+</div>

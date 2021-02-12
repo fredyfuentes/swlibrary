@@ -1,0 +1,14 @@
+<h1>{{title}} <small>{{episode}}</small> Characters</h1>
+<div class="cards">
+    <div class="card" *ngFor="let character of characters">
+        <div class="container">
+            <h4>{{character.name | uppercase}}</h4>
+            <p><strong>Eye Color:</strong> {{character.eye_color}}</p>
+            <p><strong>Gender:</strong> {{character.gender}}</p>
+            <h4>Films Starring</h4>
+            <ul>
+                <app-films-starring *ngFor="let film of character.films" [url]="film"></app-films-starring>
+            </ul>
+        </div>
+    </div>
+</div>
