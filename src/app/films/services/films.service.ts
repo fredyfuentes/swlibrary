@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Film } from '../interfaces/film.interface';
 import { environment } from '../../../environments/environment';
@@ -22,6 +22,13 @@ export class FilmsService {
 
   getFilmByUrl(url: string): Observable<Film> {
     return this.http.get<Film>(url).pipe(map((resp: any) => this.toObject(resp)));
+  }
+
+  getFilmByUrls(urls: string[]) {
+    const films = urls.map(e => {
+      return this.http.get(e).pipe(map((resp: any) => this.toObject(resp)));
+    })
+    return forkJoin(films);
   }
 
   private toObject(resp: any): Film {

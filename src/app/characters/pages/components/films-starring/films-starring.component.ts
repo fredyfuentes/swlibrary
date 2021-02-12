@@ -10,14 +10,14 @@ import { Film } from '../../../../films/interfaces/film.interface';
 })
 export class FilmsStarringComponent implements OnInit {
 
-  @Input() url!: string;
+  @Input() url!: string[];
 
-  film!: Film;
+  films: Film[] = [];
 
   constructor(private filmService: FilmsService) { }
 
   ngOnInit(): void {
-    this.filmService.getFilmByUrl(this.url).subscribe(resp => this.film = resp);
+    this.filmService.getFilmByUrls(this.url).subscribe(resp => this.films = resp);
   }
 
 }

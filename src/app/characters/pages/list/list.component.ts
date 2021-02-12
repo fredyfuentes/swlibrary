@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Film } from '../../../films/interfaces/film.interface';
 import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/character.interface';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -16,6 +17,10 @@ export class ListComponent implements OnInit {
   episode: string = '';
   charactersFilm: string = '';
   characters: Character [] = [];
+  p: number = 1;
+  eyeColor: string = '';
+  gender: string = '';
+  
   constructor(private activateRoute: ActivatedRoute,
               private characterService: CharactersService) { }
 

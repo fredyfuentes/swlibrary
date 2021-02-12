@@ -1,1 +1,6 @@
-<li>{{film?.title}}</li>
+<!-- <li *ngIf="film">{{film?.title}}</li> -->
+<ul *ngIf="films.length > 0; else cargando">
+    <li *ngFor="let film of films">{{film.title}}</li>
+</ul>
+
+<ng-template #cargando>Cargando...</ng-template>
