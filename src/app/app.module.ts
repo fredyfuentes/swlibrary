@@ -4,10 +4,12 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ForceWeakComponent } from './shared/force-weak/force-weak.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ForceWeakComponent
   ],
   imports: [
     BrowserModule,

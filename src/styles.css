@@ -7,11 +7,16 @@
     background-color: #0a0808;
   }
 
-  h1, label, a {
+  h1, h2, label, a {
     color: white;
   }
 
-  h1, h3, h4 {
+  h1, h2, h3, h4 {
+    text-align: center;
+  }
+
+  p .error{
+    color: white !important;
     text-align: center;
   }
   

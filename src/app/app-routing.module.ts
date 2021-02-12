@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { ForceWeakComponent } from './shared/force-weak/force-weak.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     path: 'characters',
     loadChildren: () => import('./characters/characters.module').then(m => m.CharactersModule)
   },
+  { path: 'weak', component: ForceWeakComponent},
   { path: '**', redirectTo: 'films' }
 ]
 

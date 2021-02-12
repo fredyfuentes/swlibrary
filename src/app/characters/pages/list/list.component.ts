@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/character.interface';
 import { FilmsService } from '../../../films/services/films.service';
@@ -28,7 +28,8 @@ export class ListComponent implements OnInit {
   
   constructor(private activateRoute: ActivatedRoute,
               private characterService: CharactersService,
-              private filmService: FilmsService) { }
+              private filmService: FilmsService,
+              private router: Router) { }
 
   ngOnInit(): void {    
     this.title = this.activateRoute.snapshot.params.title;
@@ -42,6 +43,9 @@ export class ListComponent implements OnInit {
         this.isLoading = false;        
         this.subscripcionFilms = this.filmService.getFilmByUrls(character.films).subscribe(resp => character.films = resp);
         this.characters.push(character);
+      },
+      err => {
+        this.router.navigate(['/week']);
       });
     });
   }
