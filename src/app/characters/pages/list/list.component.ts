@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Film } from '../../../films/interfaces/film.interface';
 import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/character.interface';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -20,6 +18,7 @@ export class ListComponent implements OnInit {
   p: number = 1;
   eyeColor: string = '';
   gender: string = '';
+  isLoading: boolean = true;
   
   constructor(private activateRoute: ActivatedRoute,
               private characterService: CharactersService) { }
@@ -32,7 +31,10 @@ export class ListComponent implements OnInit {
     let chf: string[] = this.charactersFilm.split(',');
 
     chf.forEach(strChar => {
-      this.characterService.getCharacterByUrl(strChar).subscribe(resp => this.characters.push(resp));
+      this.characterService.getCharacterByUrl(strChar).subscribe(resp => {
+        this.isLoading = false;
+        this.characters.push(resp);
+      });
     })
   }
 

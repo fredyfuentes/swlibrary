@@ -1,21 +1,31 @@
 <h1>{{title}} <small>{{episode}}</small> Characters</h1>
-<label>Eye Color:</label>
-<input placeholder="search by eye color" [(ngModel)]="eyeColor"/>
-<br>
-<label>Gender:</label>
-<input placeholder="search by gender" [(ngModel)]="gender"/>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
-<div class="row">
-    <div class="column" *ngFor="let character of characters | filterEye: eyeColor | filterGender: gender | paginate: { itemsPerPage: 10, currentPage: p }">
-        <div class="card" style="height: 400px;">
-            <div class="container">
-                <h4>{{character.name | uppercase}}</h4>
-                <p><strong>Eye Color:</strong> {{character.eye_color}}</p>
-                <p><strong>Gender:</strong> {{character.gender}}</p>
-                <h4>Films Starring</h4>
-                <app-films-starring [url]="character.films"></app-films-starring>
+<div class="lds-loading" *ngIf="isLoading; else dataCharacters"><div></div><div></div><div></div></div>
+
+<ng-template #dataCharacters>
+    <div class="container-form">
+        <label>Eye Color:</label>
+        <input placeholder="search by eye color" [(ngModel)]="eyeColor"/>
+    </div>    
+    <div class="container-form">
+        <label>Gender:</label>
+    <input placeholder="search by gender" [(ngModel)]="gender"/>
+    </div>    
+    <div class="container-form">
+        <label>Film:</label>
+    <input placeholder="search by gender" [(ngModel)]="gender"/>
+    </div>    
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="row">
+        <div class="column" *ngFor="let character of characters | filterEye: eyeColor | filterGender: gender | paginate: { itemsPerPage: 10, currentPage: p }">
+            <div class="card" style="height: 400px;">
+                <div class="container">
+                    <h4>{{character.name | uppercase}}</h4>
+                    <p><strong>Eye Color:</strong> {{character.eye_color}}</p>
+                    <p><strong>Gender:</strong> {{character.gender}}</p>
+                    <h4>Films Starring</h4>
+                    <app-films-starring [url]="character.films"></app-films-starring>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</ng-template>

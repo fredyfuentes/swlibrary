@@ -11,11 +11,15 @@ import { Film } from '../../interfaces/film.interface';
 export class ListComponent implements OnInit {
 
   films: Film[] = [];
+  isLoading: boolean = true;
 
   constructor(private filmsService: FilmsService) { }
 
   ngOnInit(): void {
-    this.filmsService.getFilms().subscribe(resp => this.films = resp);
+    this.filmsService.getFilms().subscribe(resp => {
+      this.isLoading = false;
+      this.films = resp;
+    });
   }
 
 }
