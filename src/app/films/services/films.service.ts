@@ -26,7 +26,7 @@ export class FilmsService {
 
   getFilmByUrls(urls: string[]) {
     const films = urls.map(e => {
-      return this.http.get(e).pipe(map((resp: any) => this.toObject(resp)));
+      return this.http.get(e).pipe(map((resp: any) => this.toObject(resp).title));
     })
     return forkJoin(films);
   }
@@ -44,7 +44,7 @@ export class FilmsService {
   private toArray(resp: any): Film[] {
     let films: Film[] = [];
     resp.results.forEach((item: any) => {
-      let film: Film = {
+      const film: Film = {
         title: item.title,
         episode_id: item.episode_id,
         director: item.director,

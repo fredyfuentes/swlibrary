@@ -1,6 +1,4 @@
 <!-- <li *ngIf="film">{{film?.title}}</li> -->
-<ul *ngIf="films.length > 0; else cargando">
-    <li *ngFor="let film of films">{{film.title}}</li>
+<ul *ngIf="films">
+    <li *ngFor="let film of films">{{film}}</li>
 </ul>
-
-<ng-template #cargando><div class="lds-loading"><div></div><div></div><div></div></div></ng-template>

@@ -8,7 +8,7 @@ export class FilterEyePipe implements PipeTransform {
 
   transform(characters: Character[], eyeColor: string): Character[] {
     if(!eyeColor) return characters;
-    return characters.filter(charater => charater.eye_color.indexOf(eyeColor) !== -1);
+    return characters.filter(charater => charater.eye_color.toLocaleLowerCase().indexOf(eyeColor.toLocaleLowerCase()) !== -1);
   }
 
 }

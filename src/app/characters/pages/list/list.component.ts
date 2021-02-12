@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/character.interface';
+import { FilmsService } from '../../../films/services/films.service';
 
 @Component({
   selector: 'app-list',
@@ -18,10 +19,13 @@ export class ListComponent implements OnInit {
   p: number = 1;
   eyeColor: string = '';
   gender: string = '';
+  film: string = '';
   isLoading: boolean = true;
+  isLoadingFilms: boolean = true;
   
   constructor(private activateRoute: ActivatedRoute,
-              private characterService: CharactersService) { }
+              private characterService: CharactersService,
+              private filmService: FilmsService) { }
 
   ngOnInit(): void {    
     this.title = this.activateRoute.snapshot.params.title;
@@ -31,11 +35,13 @@ export class ListComponent implements OnInit {
     let chf: string[] = this.charactersFilm.split(',');
 
     chf.forEach(strChar => {
-      this.characterService.getCharacterByUrl(strChar).subscribe(resp => {
+      this.characterService.getCharacterByUrl(strChar).subscribe(character => {
         this.isLoading = false;
-        this.characters.push(resp);
+        this.isLoadingFilms = false;
+        this.filmService.getFilmByUrls(character.films).subscribe(resp => character.films = resp);
+        this.characters.push(character);
       });
-    })
+    });
   }
 
 }

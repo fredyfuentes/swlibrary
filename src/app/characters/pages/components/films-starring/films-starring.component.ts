@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FilmsService } from '../../../../films/services/films.service';
-import { Film } from '../../../../films/interfaces/film.interface';
 
 @Component({
   selector: 'app-films-starring',
@@ -10,14 +8,12 @@ import { Film } from '../../../../films/interfaces/film.interface';
 })
 export class FilmsStarringComponent implements OnInit {
 
-  @Input() url!: string[];
+  @Input() films!: string[];
 
-  films: Film[] = [];
-
-  constructor(private filmService: FilmsService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.filmService.getFilmByUrls(this.url).subscribe(resp => this.films = resp);
+    
   }
 
 }
